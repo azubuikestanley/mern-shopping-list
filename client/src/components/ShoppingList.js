@@ -21,7 +21,7 @@ class ShoppingList extends Component {
         const { items } = this.props.item;
         return (
             <Container>
-                <Button
+                {/* <Button
                     color="dark"
                     style={{marginBottom: '2rem'}}
                     onClick={() => {
@@ -32,7 +32,7 @@ class ShoppingList extends Component {
                             }));
                         }
                     }}
-                >Add Item</Button>
+                >Add Item</Button> */}
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
                         {items.map(({ id, name }) => (
