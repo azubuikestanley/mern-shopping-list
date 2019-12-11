@@ -7,7 +7,8 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Container
+    Container,
+    NavbarText
 } from 'reactstrap';
 
 class AppNavbar extends Component {
@@ -27,20 +28,24 @@ class AppNavbar extends Component {
                 <Navbar color="dark" dark expand="sm" className="mb-5">
                     <Container>
                         <NavbarBrand href="/">ShoppingList</NavbarBrand>
-                        <NavbarToggler onClick={this.toggle}>
-                            <Collapse isOpen={this.state.isOpen} navbar>
-                                <Nav className="ml-auto" navbar>
-                                    <NavItem>
-                                        <NavLink 
-                                            href="https://azubuikestanley.github.io/my_portfolio/index.html"
-                                            style={{color: 'white'}}
-                                        >
-                                            My portfolio
-                                        </NavLink> 
-                                    </NavItem>
-                                </Nav>
-                            </Collapse>
-                        </NavbarToggler>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <NavLink 
+                                        href="https://azubuikestanley.github.io/my_portfolio/index.html"
+                                        style={{color: 'white'}}
+                                    >
+                                        My portfolio
+                                    </NavLink> 
+                                </NavItem>
+                            </Nav>
+                            <NavbarText 
+                                style={{color: 'white'}}
+                            >
+                                Fun Stuff!!!
+                            </NavbarText>
+                        </Collapse>
                     </Container>
                 </Navbar>
             </div>
