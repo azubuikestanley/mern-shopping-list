@@ -6,26 +6,25 @@ import {
     ModalBody,
     Form,
     FormGroup,
-    Label, 
+    Label,
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemActions';
-import uuid from 'uuid';
 
 class ItemModal extends Component {
     state = {
         modal: false,
         name: ''
-    }
+    };
 
     toggle = () => {
         this.setState({
             modal: !this.state.modal
         });
-    }
+    };
 
-    onChange = (e) => {
+    onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
 
@@ -33,9 +32,8 @@ class ItemModal extends Component {
         e.preventDefault();
 
         const newItem = {
-            id: uuid(),
             name: this.state.name
-        }
+        };
 
         //Add item via addItem action
         this.props.addItem(newItem);
