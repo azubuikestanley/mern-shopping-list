@@ -20,7 +20,7 @@ class ShoppingList extends Component {
         const { items } = this.props.item;
         if (items[0] === undefined) {
             return (
-                <h3>Please wait...</h3>
+                <h4>Please wait...</h4>
             )
         }
         return (
