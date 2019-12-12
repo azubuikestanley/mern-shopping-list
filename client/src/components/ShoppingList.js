@@ -23,7 +23,6 @@ class ShoppingList extends Component {
                 <h3>Please wait...</h3>
             )
         }
-        console.log(items);
         return (
             <Container>
                 <ListGroup>
