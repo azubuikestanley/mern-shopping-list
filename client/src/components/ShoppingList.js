@@ -12,12 +12,18 @@ class ShoppingList extends Component {
         this.props.getItems();
     }
     
-    onDeleteClick = id => {
-        this.props.deleteItem(id);
+    onDeleteClick = _id => {
+        this.props.deleteItem(_id);
     };
     
     render() {
         const { items } = this.props.item;
+        if (items[0] === undefined) {
+            return (
+                <h3>Please wait...</h3>
+            )
+        }
+        console.log(items);
         return (
             <Container>
                 <ListGroup>
@@ -29,7 +35,7 @@ class ShoppingList extends Component {
                                         className='remove-btn'
                                         color='danger'
                                         size='sm'
-                                        onClick={this.onDeleteClick.bind(this, _id)}
+                                        onClick={this.onDeleteClick.bind(this, _id)} 
                                     >
                                         &times;
                                     </Button>
@@ -46,6 +52,7 @@ class ShoppingList extends Component {
 
 ShoppingList.propTypes = {
     getItems: PropTypes.func.isRequired,
+    deleteItem: PropTypes.func.isRequired,
     item: PropTypes.object.isRequired
 }
 

@@ -18,7 +18,7 @@ export const addItem = item => dispatch => {
         .then(res => 
             dispatch({
                 type: ADD_ITEM,
-                paylod: res.data
+                payload: res.data
             })
          );
 };
@@ -28,7 +28,7 @@ export const deleteItem = id => dispatch => {
         .then(res =>
             dispatch({
                 type: DELETE_ITEM,
-                payload: res.id
+                payload: id
             })
         );
 };
