@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
     Collapse,
     Navbar,
@@ -8,12 +8,20 @@ import {
     NavItem,
     NavLink,
     Container,
-    NavbarText
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import RegisterModal from './auth/RegisterModal';
+import LoginModal from './auth/LoginModal';
+import Logout from './auth/Logout';
 
 class AppNavbar extends Component {
     state = {
         isOpen: false
+    };
+
+    static propTypes = {
+        auth: PropTypes.object.isRequired
     }
 
     toggle = () => {
@@ -23,6 +31,32 @@ class AppNavbar extends Component {
     }
 
     render() {
+        const { isAuthenticated, user} = this.props.auth;
+
+        const authLinks = (
+            <Fragment>
+                <NavItem>
+                    <span className="navbar-text mr-3">
+                        <strong>{ user ? `Welcome ${user.name}` : '' }</strong>
+                    </span>
+                </NavItem>
+                <NavItem>
+                    <Logout />
+                </NavItem>
+            </Fragment>
+        );
+
+        const guestLinks = (
+            <Fragment>
+                <NavItem>
+                    <RegisterModal />
+                </NavItem>
+                <NavItem>
+                    <LoginModal />
+                </NavItem>
+            </Fragment>
+        );
+
         return (
             <div>
                 <Navbar color="dark" dark expand="sm" className="mb-5">
@@ -34,17 +68,13 @@ class AppNavbar extends Component {
                                 <NavItem>
                                     <NavLink 
                                         href="https://azubuikestanley.github.io/my_portfolio/index.html"
-                                        style={{color: 'white'}}
+                                        // style={{color: 'white'}}
                                     >
                                         My portfolio
                                     </NavLink> 
-                                </NavItem>
+                                </NavItem> 
+                                { isAuthenticated ? authLinks : guestLinks }
                             </Nav>
-                            <NavbarText 
-                                style={{color: 'white'}}
-                            >
-                                Fun Stuff!!!
-                            </NavbarText>
                         </Collapse>
                     </Container>
                 </Navbar>
@@ -53,4 +83,8 @@ class AppNavbar extends Component {
     }
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, null)(AppNavbar);
